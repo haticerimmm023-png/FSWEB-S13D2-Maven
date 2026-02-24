@@ -2,6 +2,9 @@ package org.example;
 
 public class ResultAnalyzer {
 
+    // NextGen için gerekli
+    String userId = "308111";
+
     public boolean isPalindrome(int number) {
         int n = Math.abs(number);
         int original = n;
@@ -51,4 +54,3 @@ public class ResultAnalyzer {
         return result.toString();
     }
 }
-
