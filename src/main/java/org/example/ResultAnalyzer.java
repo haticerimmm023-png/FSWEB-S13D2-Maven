@@ -2,7 +2,6 @@ package org.example;
 
 public class ResultAnalyzer {
 
-    // NextGen için gerekli
     String userId = "308111";
 
     public boolean isPalindrome(int number) {
@@ -20,11 +19,11 @@ public class ResultAnalyzer {
     }
 
     public boolean isPerfectNumber(int number) {
-        if (number <= 0) return false;
+        if (number <= 1) return false;
 
-        int sum = 0;
+        int sum = 1;
 
-        for (int i = 1; i < number; i++) {
+        for (int i = 2; i <= number / 2; i++) {
             if (number % i == 0) {
                 sum += i;
             }
@@ -34,12 +33,9 @@ public class ResultAnalyzer {
     }
 
     public String numberToWords(int number) {
-        if (number < 0) return "Invalid Value";
-        if (number == 0) return "Zero";
-
         String[] words = {
-                "Zero", "One", "Two", "Three", "Four",
-                "Five", "Six", "Seven", "Eight", "Nine"
+                "zero","one","two","three","four",
+                "five","six","seven","eight","nine"
         };
 
         String s = String.valueOf(number);
