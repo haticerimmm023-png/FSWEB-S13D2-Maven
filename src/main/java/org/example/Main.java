@@ -1,67 +1,50 @@
 package org.example;
 
 public class Main {
-    public static void main(String[] args) {
 
-        ResultAnalyzer analyzer = new ResultAnalyzer();
+    public static boolean isPalindrome(int number) {
+        int n = Math.abs(number);
+        int original = n;
+        int reversed = 0;
 
-        System.out.println(analyzer.isPalindrome(121));
-        System.out.println(analyzer.isPerfectNumber(6));
-        System.out.println(analyzer.numberToWords(123));
+        while (n > 0) {
+            int digit = n % 10;
+            reversed = reversed * 10 + digit;
+            n /= 10;
+        }
+
+        return original == reversed;
     }
 
-    public static class ResultAnalyzer {
+    public static boolean isPerfectNumber(int number) {
+        if (number <= 1) return false;
 
-        // NextGen için gerekli
-        String userId = "308111";
+        int sum = 1;
 
-        public boolean isPalindrome(int number) {
-            int n = Math.abs(number);
-            int original = n;
-            int reversed = 0;
-
-            while (n > 0) {
-                int digit = n % 10;
-                reversed = reversed * 10 + digit;
-                n /= 10;
+        for (int i = 2; i <= number / 2; i++) {
+            if (number % i == 0) {
+                sum += i;
             }
-
-            return original == reversed;
         }
 
-        public boolean isPerfectNumber(int number) {
-            if (number <= 0) return false;
+        return sum == number;
+    }
 
-            int sum = 0;
+    public static String numberToWords(int number) {
+        String[] words = {
+                "zero","one","two","three","four",
+                "five","six","seven","eight","nine"
+        };
 
-            for (int i = 1; i < number; i++) {
-                if (number % i == 0) {
-                    sum += i;
-                }
-            }
+        String s = String.valueOf(number);
+        StringBuilder result = new StringBuilder();
 
-            return sum == number;
+        for (int i = 0; i < s.length(); i++) {
+            int digit = s.charAt(i) - '0';
+            result.append(words[digit]);
+            if (i < s.length() - 1) result.append(" ");
         }
 
-        public String numberToWords(int number) {
-            if (number < 0) return "Invalid Value";
-            if (number == 0) return "Zero";
-
-            String[] words = {
-                    "Zero", "One", "Two", "Three", "Four",
-                    "Five", "Six", "Seven", "Eight", "Nine"
-            };
-
-            String s = String.valueOf(number);
-            StringBuilder result = new StringBuilder();
-
-            for (int i = 0; i < s.length(); i++) {
-                int digit = s.charAt(i) - '0';
-                result.append(words[digit]);
-                if (i < s.length() - 1) result.append(" ");
-            }
-
-            return result.toString();
-        }
+        return result.toString();
     }
 }
